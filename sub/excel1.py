@@ -20,16 +20,14 @@ def excel2doc(file_path):
     wb = xlrd.open_workbook(file_path)
     # sheetを開く
     sheet_list = wb.sheet_names()
-    stack_data = []
+    plain_text =""
 
-    sheet = wb.sheet_by_name(sheet_list[0])
+    for sheet_name in sheet_list:
+        sheet = wb.sheet_by_name(sheet_name)
+        plain_text += array2plaintext(get_list_2d_all(sheet))
+    return plain_text
 
 
-    return array2plaintext(get_list_2d_all(sheet))
-
-
-if __name__ == "__main__":
-    print(main("dataset/excel/1.xlsx"))
 
 
 
